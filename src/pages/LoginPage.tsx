@@ -5,11 +5,12 @@ import * as z from 'zod';
 import toast from 'react-hot-toast';
 import CountrySelector from '../components/auth/CountrySelector';
 import { useAuthStore } from '../store/authStore';
-import { useNavigate } from 'react-router-dom';
+// Change: useNavigate to useHistory
+import { useHistory } from 'react-router-dom';
 
 const loginSchema = z.object({
   phoneNumber: z.string().min(7, 'Phone number must be at least 7 digits').max(15, 'Phone number too long'),
-  otp: z.string().optional(), // OTP is optional here.
+  otp: z.string().optional(), // OTP is optional here
 });
 
 type LoginFormInputs = z.infer<typeof loginSchema>;
@@ -20,7 +21,7 @@ const LoginPage: React.FC = () => {
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
   const login = useAuthStore((state) => state.login);
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const {
     register,
@@ -49,12 +50,11 @@ const LoginPage: React.FC = () => {
     setIsVerifyingOtp(true);
     toast.loading('Verifying OTP...', { id: 'otp-verify' });
 
-
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     login(`${dialCode}${data.phoneNumber}`);
     toast.success('Login successful!', { id: 'otp-verify' });
-    navigate('/dashboard');
+    history.push('/dashboard');
 
     setIsVerifyingOtp(false);
   };

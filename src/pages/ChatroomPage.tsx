@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useChatroomStore } from '../store/chatroomStore';
 import { useMessageStore, Message } from '../store/messageStore';
 import { MdArrowBack, MdSend, MdImage, MdContentCopy } from 'react-icons/md';
@@ -9,20 +9,19 @@ import { shallow } from 'zustand/shallow';
 const MESSAGES_PER_PAGE = 20;
 const AI_TYPING_DELAY = 1000;
 const AI_REPLY_DELAY = 2000;
-const AI_THROTTLE_TIME = 5000; 
+const AI_THROTTLE_TIME = 5000;
 
 const ChatroomPage: React.FC = () => {
   const { id: chatroomId } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+  const history = useHistory();
   const chatroom = useChatroomStore((state) =>
     state.chatrooms.find((room) => room.id === chatroomId)
   );
   const updateChatroomLastMessageTime = useChatroomStore((state) => state.updateChatroomLastMessageTime);
 
-
   const allMessages = useMessageStore(
     (state) => state.messages[chatroomId || ''] || [],
-    shallow 
+    shallow
   );
   const addMessage = useMessageStore((state) => state.addMessage);
   const ensureChatroomMessages = useMessageStore((state) => state.ensureChatroomMessages);
@@ -43,14 +42,14 @@ const ChatroomPage: React.FC = () => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const observer = useRef<IntersectionObserver | null>(null);
 
+
    // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!chatroomId) {
-        setVisibleMessages([]);
+        setVisibleMessages([]); 
         setHasMoreMessages(false);
         return;
     }
-
 
     const messagesToLoad = page * MESSAGES_PER_PAGE;
     const newVisibleMessages = allMessages.slice(
@@ -58,7 +57,7 @@ const ChatroomPage: React.FC = () => {
     );
 
     if (newVisibleMessages.length !== visibleMessages.length ||
-        newVisibleMessages.some((msg, i) => msg !== visibleMessages[i])) {
+        newVisibleMessages.some((msg, i) => msg !== visibleMessages[i])) { // Compare references of individual message objects
         setVisibleMessages(newVisibleMessages);
     }
 
@@ -127,7 +126,7 @@ const ChatroomPage: React.FC = () => {
     if (chatroomId) {
       addMessage(chatroomId, 'user', { text: text || undefined, imageUrl: selectedImage });
       updateChatroomLastMessageTime(chatroomId);
-      toast.success('Message sent!', { id: 'message-sent' }); // Added toast
+      toast.success('Message sent!', { id: 'message-sent' }); // Added toast here
       setMessageInput('');
       setSelectedImage(null);
 
@@ -164,7 +163,7 @@ const ChatroomPage: React.FC = () => {
       {/* Header */}
       <div className="flex items-center p-4 bg-white dark:bg-gray-800 shadow-md">
         <button
-          onClick={() => navigate('/dashboard')}
+          onClick={() => history.push('/dashboard')}
           className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
           aria-label="Back to dashboard"
         >

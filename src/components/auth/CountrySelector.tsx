@@ -48,7 +48,6 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({ onSelect, defaultValu
         setCountries(sortedData);
       } catch (error) {
         console.error('Error fetching countries:', error);
-        // Fallback or error message
       } finally {
         setIsLoading(false);
       }

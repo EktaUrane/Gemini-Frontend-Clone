@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useChatroomStore } from '../store/chatroomStore';
 import { useAuthStore } from '../store/authStore';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { MdAdd, MdSearch, MdLogout } from 'react-icons/md';
 import { useDebounce } from '../hooks/useDebounce';
@@ -9,7 +9,7 @@ import { useDebounce } from '../hooks/useDebounce';
 const DashboardPage: React.FC = () => {
   const { chatrooms, createChatroom, deleteChatroom } = useChatroomStore();
   const logout = useAuthStore((state) => state.logout);
-  const navigate = useNavigate();
+  const history = useHistory();
   const [searchTerm, setSearchTerm] = useState('');
   const [isCreating, setIsCreating] = useState(false);
   const [newChatroomName, setNewChatroomName] = useState('');
@@ -47,7 +47,7 @@ const DashboardPage: React.FC = () => {
   const handleLogout = () => {
     logout();
     toast.success('Logged out successfully!');
-    navigate('/login');
+    history.push('/login');
   };
 
   return (
@@ -121,7 +121,7 @@ const DashboardPage: React.FC = () => {
                 className="flex items-center justify-between bg-gray-50 dark:bg-gray-700 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer"
               >
                 <div
-                  onClick={() => navigate(`/chatroom/${room.id}`)}
+                  onClick={() => history.push(`/chatroom/${room.id}`)}
                   className="flex-grow flex flex-col"
                 >
                   <span className="text-lg font-semibold text-gray-800 dark:text-gray-100">
