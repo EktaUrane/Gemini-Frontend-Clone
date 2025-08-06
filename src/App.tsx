@@ -1,24 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import DashboardPage from './pages/DashboardPage';
+import ChatroomPage from './pages/ChatroomPage';
+import { useAuthStore } from './store/authStore';
+import DarkModeToggle from './components/common/DarkModeToggle';
+
+const PrivateRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
+  const { isAuthenticated } = useAuthStore();
+  return isAuthenticated ? children : <Navigate to="/login" />;
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <DarkModeToggle />
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <DashboardPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/chatroom/:id"
+          element={
+            <PrivateRoute>
+              <ChatroomPage />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
     </div>
   );
 }

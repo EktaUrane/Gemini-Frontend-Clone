@@ -1,13 +1,108 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #f9fafb;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff; 
+  --bg-input: #f3f4f6;
+  --bg-hover: #e5e7eb; 
+  --bg-accent: #3b82f6;
+  --bg-accent-active: #2563eb;
+  --text-primary: #1f2937; 
+  --text-secondary: #4b5563;
+  --border-input: #d1d5db;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+.dark {
+  --bg-primary: #111827; 
+  --bg-secondary: #1f2937; 
+  --bg-card: #1f2937; 
+  --bg-input: #374151; 
+  --bg-hover: #4b5563; 
+  --bg-accent: #8b5cf6; 
+  --bg-accent-active: #7c3aed; 
+  --text-primary: #f9fafb; 
+  --text-secondary: #d1d5db; 
+  --border-input: #4b5563; 
+}
+
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--bg-hover);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+
+.react-select__control {
+  background-color: var(--bg-input) !important;
+  border-color: var(--border-input) !important;
+  color: var(--text-primary) !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.react-select__control--is-focused {
+  border-color: var(--bg-accent) !important;
+  box-shadow: 0 0 0 1px var(--bg-accent) !important;
+}
+
+
+
+.react-select__single-value {
+  color: var(--text-primary) !important;
+}
+
+.react-select__placeholder {
+  color: var(--text-secondary) !important;
+}
+
+.react-select__menu {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-input) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin-top: 8px;
+  z-index: 50;
+}
+
+.react-select__option {
+  background-color: var(--bg-card) !important; 
+  color: var(--text-primary) !important;
+  padding: 10px 12px; 
+  cursor: pointer;
+}
+
+.react-select__option--is-focused {
+  background-color: var(--bg-hover) !important;
+}
+
+.react-select__option--is-selected {
+  background-color: var(--bg-accent) !important;
+  color: white !important; 
+}
+
+.react-select__indicator-separator {
+  background-color: var(--border-input) !important;
+}
+
+.react-select__indicator {
+  color: var(--text-secondary) !important;
+}
+
+.react-select__input-container {
+  color: var(--text-primary) !important;
 }

@@ -1,46 +1,70 @@
-# Getting Started with Create React App
+# Gemini Frontend Clone Assignment - Kuvaka Tech
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**GitHub Repository:** 
+[https://github.com/EktaUrane/Gemini-Frontend-Clone]
 
-## Available Scripts
+## Project Overview
 
-In the project directory, you can run:
+This project is a frontend clone of a Gemini-style conversational AI chat application, built as an assignment for Kuvaka Tech. It simulates key features such as OTP-based authentication, chatroom management, AI messaging with typing indicators and throttling, image uploads, and a highly responsive, user-friendly interface with dark mode.
 
-### `npm start`
+The application aims to demonstrate proficiency in React, modern state management (Zustand), robust form validation (React Hook Form + Zod), and a keen eye for UI/UX details.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features Implemented
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 1. Authentication
+*   **OTP-based Login/Signup:** Simulated flow that always succeeds for any valid-looking input.
+*   **Country Code Selection:** Fetches real country data (flags, dial codes) from `restcountries.com` and allows searching by country name.
+*   **Form Validation:** Implemented with React Hook Form and Zod for schema-based validation.
+*   **Session Persistence:** User authentication status and data saved in `localStorage`.
 
-### `npm test`
+### 2. Dashboard
+*   **Chatroom Listing:** Displays a list of user's chatrooms.
+*   **Create/Delete Chatrooms:** Functionality to add and remove chatrooms with confirmation toasts.
+*   **Debounced Search:** Filters chatrooms by title with a debounced input for performance.
+*   **Logout:** Securely logs out the user and clears session.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. Chatroom Interface
+*   **Dynamic Chat UI:** Displays user and simulated AI messages with timestamps.
+*   **Typing Indicator:** "Gemini is typing..." animation.
+*   **AI Response Simulation:** Fake AI replies after a delay using `setTimeout`, with throttling to prevent rapid responses.
+*   **Auto-scroll:** Automatically scrolls to the latest message.
+*   **Reverse Infinite Scroll:** Simulates fetching older messages with client-side pagination (20 messages per page).
+*   **Image Upload:** Supports uploading images (as Base64 previews) directly into the chat.
+*   **Copy-to-Clipboard:** Feature on message hover for easy text/image URL copying.
+*   **Loading Skeletons:** Displays placeholder skeletons for messages during initial load (or when fetching older messages).
 
-### `npm run build`
+### 4. Global UX Features
+*   **Mobile Responsive Design:** Fully responsive layout using Tailwind CSS, adapting to various screen sizes.
+*   **Dark Mode Toggle:** Seamless dark mode implementation.
+*   **Toast Notifications:** Provides user feedback for key actions (OTP sent, message sent, chatroom deleted, etc.) using `react-hot-toast`.
+*   **Keyboard Accessibility:** Ensures all main interactions are navigable and operable via keyboard.
+*   **Made with Love:** A small attribution on the login page.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technical Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+*   **Framework:** React (create-react-app with TypeScript)
+*   **State Management:** Zustand (for global and persistent state)
+*   **Form Validation:** React Hook Form + Zod
+*   **Styling:** Tailwind CSS
+*   **Routing:** React Router DOM
+*   **Notifications:** React Hot Toast
+*   **Icons:** React Icons
+*   **Country Data:** `restcountries.com` API
+*   **Deployment:** Netlify
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Setup and Run Instructions
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1.  **Clone the repository:**
+    ```bash
+    git clone [YOUR_GITHUB_REPO_URL_HERE]
+    cd gemini-clone
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Start the development server:**
+    ```bash
+    npm start
+    ```
+    The application will open in your browser at `http://localhost:3000`.
