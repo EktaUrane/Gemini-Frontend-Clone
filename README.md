@@ -1,5 +1,8 @@
 # Gemini Frontend Clone Assignment - Kuvaka Tech
 
+**Vercel Link**
+[https://gemini-frontend-clone-d4lfips9l-ekta-uranes-projects.vercel.app/login]
+
 **GitHub Repository:** 
 [https://github.com/EktaUrane/Gemini-Frontend-Clone]
 
