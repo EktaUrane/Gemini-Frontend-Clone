@@ -42,11 +42,10 @@ const ChatroomPage: React.FC = () => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const observer = useRef<IntersectionObserver | null>(null);
 
-
    // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!chatroomId) {
-        setVisibleMessages([]); 
+        setVisibleMessages([]);
         setHasMoreMessages(false);
         return;
     }
@@ -82,7 +81,6 @@ const ChatroomPage: React.FC = () => {
 
     if (node) observer.current.observe(node);
   }, [hasMoreMessages]);
-
 
   const simulateAIResponse = useCallback(async () => {
     if (!chatroomId) return;
@@ -126,7 +124,7 @@ const ChatroomPage: React.FC = () => {
     if (chatroomId) {
       addMessage(chatroomId, 'user', { text: text || undefined, imageUrl: selectedImage });
       updateChatroomLastMessageTime(chatroomId);
-      toast.success('Message sent!', { id: 'message-sent' }); // Added toast here
+      toast.success('Message sent!', { id: 'message-sent' });
       setMessageInput('');
       setSelectedImage(null);
 
